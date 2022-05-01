@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
             User user2 = new User();
             user2.setUsername("User2");
-            user2.setAccount(0.0);
+            user2.setAccount(200.0);
 
             userRepository.save(user1);
             userRepository.save(user2);

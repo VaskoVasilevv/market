@@ -5,6 +5,7 @@ import com.example.market.model.entity.Item;
 import com.example.market.service.ItemService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,11 +21,34 @@ public class ItemsController {
         this.itemService = itemService;
     }
 
+//  URL - /items
     @GetMapping
     public ResponseEntity<List<ItemDto>> getAllItems() {
         List<Item> allItems = itemService.getAllItems();
 
-        List<ItemDto> allItemsDTO = allItems.stream().map(i -> {
+        List<ItemDto> allItemsDTO = mapItemToItemDto(allItems);
+
+        return ResponseEntity.
+                ok(allItemsDTO);
+    }
+
+//  Bonus All items by owner id!
+//  URL - /items/1
+    @GetMapping("{id}")
+    public ResponseEntity<List<ItemDto>> getAllItemsByOwnerId(@PathVariable Long id) {
+
+        List<Item> allItems = itemService.getAllItemsByOwnerId(id);
+
+        List<ItemDto> allItemsDTO = mapItemToItemDto(allItems);
+
+        return ResponseEntity.
+                ok(allItemsDTO);
+    }
+
+
+
+    private List<ItemDto> mapItemToItemDto(List<Item> allItems) {
+        return allItems.stream().map(i -> {
 
             ItemDto itemDTO = new ItemDto();
             itemDTO.setId(i.getId());
@@ -34,8 +58,5 @@ public class ItemsController {
 
             return itemDTO;
         }).collect(Collectors.toList());
-
-        return ResponseEntity.
-                ok(allItemsDTO);
     }
 }

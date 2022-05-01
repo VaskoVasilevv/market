@@ -38,4 +38,12 @@ public class ItemServiceImpl implements ItemService {
         List<Item> allItems = itemRepository.getAllItems();
         return allItems;
     }
+
+    @Override
+    public List<Item> getAllItemsByOwnerId(Long id) {
+
+        List<Item> items = itemRepository.getAllByOwnerId(id);
+
+        return items;
+    }
 }

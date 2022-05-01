@@ -9,4 +9,6 @@ public interface ItemService {
     void initItems();
 
     List<Item> getAllItems();
+
+    List<Item> getAllItemsByOwnerId(Long id);
 }
