@@ -33,7 +33,6 @@ public class SwaggerConfig {
     public Docket contractApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-//                .pathMapping("/")
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())

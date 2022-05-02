@@ -4,12 +4,7 @@ import com.example.market.model.DTO.ContractClosedDto;
 import com.example.market.model.DTO.ContractDto;
 import com.example.market.model.entity.Contract;
 import com.example.market.service.ContractService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +13,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/contracts")
-//@Api(value = "ContractsControllerAPI",produces = MediaType.APPLICATION_JSON_VALUE)
 public class ContractController {
 
     private final ContractService contractService;
