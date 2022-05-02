@@ -12,8 +12,9 @@ import java.util.List;
 @Repository
 public interface ContractRepository extends JpaRepository<Contract,Long> {
 
-    @Query(value = "SELECT * FROM market.contracts AS c WHERE c.active = true",nativeQuery = true)
-    List<Contract> getAllActive();
+    @Query(value = "SELECT * FROM market.contracts AS c WHERE c.active = :status",nativeQuery = true)
+    List<Contract> getAllByStatus(@PathVariable("status") boolean status);
+
 
     @Query("SELECT c from Contract c where c.id = :id")
     Contract getContractById(@Param("id") Long id);

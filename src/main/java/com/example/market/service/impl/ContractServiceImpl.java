@@ -47,11 +47,9 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public List<Contract> getAllContractsByStatus() {
-        List<Contract> allActive = contractRepository.getAllActive();
+    public List<Contract> getAllContractsByStatus(boolean status) {
 
-        return allActive;
-
+            return  contractRepository.getAllByStatus(status);
     }
 
     @Override
@@ -75,7 +73,7 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public void close() {
-        Contract contract = getAllContractsByStatus().stream().findFirst().orElse(null);
+        Contract contract = getAllContractsByStatus(true).stream().findFirst().orElse(null);
 
         if (contract != null) {
             User seller = contract.getSeller();

@@ -9,7 +9,7 @@ public interface ContractService {
 
     void initContract();
 
-    List<Contract> getAllContractsByStatus();
+    List<Contract> getAllContractsByStatus(boolean status);
 
     Contract getContractById(Long id);
 

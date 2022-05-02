@@ -21,8 +21,8 @@ public class ItemsController {
         this.itemService = itemService;
     }
 
-//  URL - /items
-    @GetMapping
+//  URL - /items/all
+    @GetMapping("/all")
     public ResponseEntity<List<ItemDto>> getAllItems() {
         List<Item> allItems = itemService.getAllItems();
 
@@ -33,8 +33,8 @@ public class ItemsController {
     }
 
 //  Bonus All items by owner id!
-//  URL - /items/1
-    @GetMapping("{id}")
+//  URL - /items/all/1
+    @GetMapping("/all/{id}")
     public ResponseEntity<List<ItemDto>> getAllItemsByOwnerId(@PathVariable Long id) {
 
         List<Item> allItems = itemService.getAllItemsByOwnerId(id);

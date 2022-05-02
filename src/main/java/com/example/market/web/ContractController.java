@@ -1,9 +1,15 @@
 package com.example.market.web;
 
+import com.example.market.model.DTO.ContractClosedDto;
 import com.example.market.model.DTO.ContractDto;
 import com.example.market.model.entity.Contract;
 import com.example.market.service.ContractService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/contracts")
+//@Api(value = "ContractsControllerAPI",produces = MediaType.APPLICATION_JSON_VALUE)
 public class ContractController {
 
     private final ContractService contractService;
@@ -24,10 +31,20 @@ public class ContractController {
 
 
     @GetMapping
-    public ResponseEntity<List<ContractDto>> getAllItems() {
-        List<Contract> allIContracts = contractService.getAllContractsByStatus();
+    public ResponseEntity<List<ContractDto>> getAllContractsByStatus() {
+        List<Contract> allIContracts = contractService.getAllContractsByStatus(true);
 
         List<ContractDto> allContractsDto = allIContracts.stream().map(i -> modelMapper.map(i, ContractDto.class)).collect(Collectors.toList());
+
+        return ResponseEntity.
+                ok(allContractsDto);
+    }
+
+    @GetMapping("all")
+    public ResponseEntity<List<ContractClosedDto>> getAllClosedContracts() {
+        List<Contract> allIContracts = contractService.getAllContractsByStatus(false);
+
+        List<ContractClosedDto> allContractsDto = allIContracts.stream().map(i -> modelMapper.map(i, ContractClosedDto.class)).collect(Collectors.toList());
 
         return ResponseEntity.
                 ok(allContractsDto);
@@ -60,7 +77,7 @@ public class ContractController {
     //  URL - /contracts/all/1
 //  Bonus! With this endpoint I represent all contracts by seller!
     @GetMapping("/all/{id}")
-    public ResponseEntity<List<ContractDto>> allContractsById(@PathVariable("id") Long id) {
+    public ResponseEntity<List<ContractDto>> allContractsBySellerId(@PathVariable("id") Long id) {
 
         List<Contract> contract = contractService.getContractBySeller(id);
 
@@ -70,7 +87,7 @@ public class ContractController {
     }
 
     //  Bonus part with currency (User2 has 200EUR in his bank account, he bought item3 for 50EUR. After deal User1 has 60USD in his bank account and User2 has 150EUR.
-    //  If uoy use this endpoint drop all tables for correct information.
+    //  If you use this endpoint, drop all tables for correct information.
     //  URL - /contracts/deal
     @GetMapping("/deal")
     public ResponseEntity<ContractDto> contractDeal() {
