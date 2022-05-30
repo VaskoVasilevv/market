@@ -29,6 +29,7 @@ public class ItemServiceImpl implements ItemService {
             item.setOwner(owner);
 
             itemRepository.save(item);
+
         }
     }
 
