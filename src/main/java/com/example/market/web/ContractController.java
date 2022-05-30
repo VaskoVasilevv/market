@@ -32,6 +32,7 @@ public class ContractController {
 
         return ResponseEntity.
                 ok(allContractsDto);
+
     }
 
     @GetMapping("all")
@@ -54,6 +55,7 @@ public class ContractController {
         ContractDto contractDto = modelMapper.map(contract, ContractDto.class);
 
         return ResponseEntity.ok(contractDto);
+
     }
 
     //  URL - /contracts/close
