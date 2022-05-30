@@ -30,6 +30,7 @@ public class ItemsController {
 
         return ResponseEntity.
                 ok(allItemsDTO);
+
     }
 
 //  Bonus All items by owner id!
