@@ -99,8 +99,7 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public List<Contract> getContractBySeller(Long id) {
 
-        List<Contract> allContractsBySellerId = contractRepository.getAllContractsBySellerId(id);
-        return allContractsBySellerId;
+        return contractRepository.getAllContractsBySellerId(id);
     }
 
     @Override
