@@ -43,8 +43,6 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<Item> getAllItemsByOwnerId(Long id) {
 
-        List<Item> items = itemRepository.getAllByOwnerId(id);
-
-        return items;
+        return itemRepository.getAllByOwnerId(id);
     }
 }
