@@ -67,7 +67,6 @@ public class ContractServiceImpl implements ContractService {
             contractRepository.save(contractById);
         }
 
-
         return contractById;
     }
 
