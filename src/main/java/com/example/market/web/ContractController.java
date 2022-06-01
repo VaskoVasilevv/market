@@ -75,7 +75,7 @@ public class ContractController {
     @GetMapping("/all/{id}")
     public ResponseEntity<List<ContractDto>> allContractsBySellerId(@PathVariable("id") Long id) {
 
-        List<Contract> contract = contractService.getContractBySeller(id);
+        List<Contract> contract = contractService.getContractBySellerId(id);
 
         List<ContractDto> contractDto = contract.stream().map(c -> modelMapper.map(c, ContractDto.class)).collect(Collectors.toList());
 
