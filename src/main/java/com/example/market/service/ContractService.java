@@ -17,7 +17,7 @@ public interface ContractService {
 
     void close();
 
-    List<Contract> getContractBySeller(Long id);
+    List<Contract> getContractBySellerId(Long id);
 
     Contract deal();
 }
